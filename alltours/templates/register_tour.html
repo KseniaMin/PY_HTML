@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for Tour</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Register for {{ tour.name }}</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                {% if session.client_id %}
+                    <li><a href="{{ url_for('my_tours') }}">My Tours</a></li>
+                    {% if session.is_admin %}
+                        <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Logout ({{ session.client_name }})</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.full_name.label }}<br>
+                {{ form.full_name(size=32) }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.phone_number.label }}<br>
+                {{ form.phone_number(size=32) }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.travel_date.label }}<br>
+                {{ form.travel_date() }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.travel_time.label }}<br>
+                {{ form.travel_time() }}<br>
+            </div>
+            <div class="form-group">
+                {{ form.submit(class="btn") }}
+            </div>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 AllTours. All rights reserved.</p>
+    </footer>
+</body>
+</html>

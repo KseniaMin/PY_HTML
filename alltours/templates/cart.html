@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                {% if session.client_id %}
+                    <li><a href="{{ url_for('my_tours') }}">My Tours</a></li>
+                    {% if session.is_admin %}
+                        <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Logout ({{ session.client_name }})</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Items in Your Cart</h2>
+            <ul>
+                {% for item in cart_items %}
+                <li>
+                    {{ item.tour.name }} - Quantity: {{ item.quantity }} 
+                    <form action="{{ url_for('remove_from_cart', item_id=item.id) }}" method="POST" style="display:inline;">
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+            <a href="{{ url_for('checkout') }}" class="btn">Proceed to Checkout</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 AllTours. All rights reserved.</p>
+    </footer>
+</body>
+</html>

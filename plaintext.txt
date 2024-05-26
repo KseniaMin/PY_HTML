@@ -1,0 +1,33 @@
+alltours/
+├── app.py - Основной файл приложения, содержащий маршруты, модели и конфигурацию.
+├── forms.py - Файл, содержащий формы для регистрации тура.
+├── tests.py - Файл, содержащий модульные и сквозные тесты для приложения.
+├── instance/ - Файл базы данных.
+│   ├── alltours.db
+├── templates/ - Директория, содержащая HTML-шаблоны для рендеринга страниц
+│   ├── add_review.html
+│   ├── add_tour.html
+│   ├── admin_dashboard.html
+│   ├── cart.html
+│   ├── checkout.html
+│   ├── edit_review.html
+│   ├── edit_tour.html
+│   ├── edit_user.html
+│   ├── index.html
+│   ├── login.html
+│   ├── my_tours.html
+│   ├── register.html
+│   ├── register_tour.html
+│   ├── run_tests.html
+│   └── tour_detail.html
+├── static/ - Директория, содержащая статические файлы, такие как CSS.
+│   └── styles.css
+├── migrations/ - Директория, содержащая файлы миграций базы данных.
+│   └── (файлы миграций)
+└── alltours.db - Файл базы данных для тестов.
+│ 
+└── make_admin.py - Это для получения административного прав. 
+        Для запуска, python make_admin.py В этой директории 
+        появится (Введите адрес электронной почты пользователя, чтобы стать администратором)
+        Enter the email of the user to make admin: admin@gmail.com
+        И этот пользователь станет администратором.
